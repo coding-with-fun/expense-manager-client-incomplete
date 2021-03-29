@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import App from "./App";
 import "./scss/index.scss";
+import "./shared/RequestWrapper";
 import store from "./store";
 
 ReactDOM.render(

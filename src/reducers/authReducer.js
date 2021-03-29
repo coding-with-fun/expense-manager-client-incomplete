@@ -31,7 +31,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: userToken,
-                isUserAuthenticated: userToken ? true : false,
+                isUserAuthenticated: !!userToken,
             };
 
         default:

@@ -13,6 +13,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { Menu as MenuIcon } from "@material-ui/icons";
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AppBarDrawer from "./AppBarDrawer";
 
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TopBar = () => {
+const TopBar = ({ isUserAuthenticated }) => {
     const classes = useStyles();
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -53,9 +54,11 @@ const TopBar = () => {
                 <Typography variant="h6" className={classes.title}>
                     <Link to="/">Expense Manager</Link>
                 </Typography>
-                <Button color="inherit">
-                    <Link to="/signin">Sign In</Link>
-                </Button>
+                {!isUserAuthenticated && (
+                    <Link to="/signin">
+                        <Button color="inherit">Sign In</Button>
+                    </Link>
+                )}
                 <AppBarDrawer
                     isDrawerOpen={isDrawerOpen}
                     toggleDrawer={toggleDrawer}
@@ -65,4 +68,8 @@ const TopBar = () => {
     );
 };
 
-export default TopBar;
+export default connect((state) => {
+    return {
+        isUserAuthenticated: state.auth.isUserAuthenticated,
+    };
+})(TopBar);

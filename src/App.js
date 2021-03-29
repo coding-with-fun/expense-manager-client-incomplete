@@ -6,9 +6,13 @@ import WrappedRouter from "./routes/WrappedRouter";
 const App = ({ dispatch }) => {
     const [loadingUserToken, setLoadingUserToken] = useState(true);
 
-    useEffect(() => {
-        dispatch(checkUserAuthentication());
+    const handleAuthenticateUser = async () => {
+        await dispatch(checkUserAuthentication());
         setLoadingUserToken(false);
+    };
+
+    useEffect(() => {
+        handleAuthenticateUser();
         // eslint-disable-next-line
     }, []);
 
