@@ -10,10 +10,10 @@ import TopBar from "../components/TopBar";
 import AuthenticatedRouter from "./AuthenticatedRouter";
 import UnauthenticatedRouter from "./UnauthenticatedRouter";
 
-const WrappedRouter = ({ loadingUserToken, isUserAuthenticated }) => {
+const WrappedRouter = ({ isUserAuthenticated, fetchingUserToken }) => {
     return (
         <div className="light-theme">
-            {!loadingUserToken ? (
+            {!fetchingUserToken ? (
                 <Router>
                     <TopBar />
                     <div className="body-container">
@@ -32,5 +32,6 @@ const WrappedRouter = ({ loadingUserToken, isUserAuthenticated }) => {
 export default connect((state) => {
     return {
         isUserAuthenticated: state.auth.isUserAuthenticated,
+        fetchingUserToken: state.auth.fetchingUserToken,
     };
 })(WrappedRouter);

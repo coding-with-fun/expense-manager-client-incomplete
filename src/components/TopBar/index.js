@@ -14,7 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Menu as MenuIcon } from "@material-ui/icons";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AppBarDrawer from "./AppBarDrawer";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,15 +28,23 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         marginTop: "2px",
     },
+    titleLink: {
+        cursor: "pointer",
+    },
 }));
 
 const TopBar = ({ isUserAuthenticated }) => {
+    const history = useHistory();
     const classes = useStyles();
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const toggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen);
+    };
+
+    const handleRoute = (path) => {
+        history.push(path);
     };
 
     return (
@@ -52,12 +60,20 @@ const TopBar = ({ isUserAuthenticated }) => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    <Link to="/">Expense Manager</Link>
+                    <span
+                        onClick={() => handleRoute("/")}
+                        className={classes.titleLink}
+                    >
+                        Expense Manager
+                    </span>
                 </Typography>
                 {!isUserAuthenticated && (
-                    <Link to="/signin">
-                        <Button color="inherit">Sign In</Button>
-                    </Link>
+                    <Button
+                        color="inherit"
+                        onClick={() => handleRoute("/signin")}
+                    >
+                        Sign In
+                    </Button>
                 )}
                 <AppBarDrawer
                     isDrawerOpen={isDrawerOpen}

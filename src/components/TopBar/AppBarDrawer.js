@@ -15,8 +15,14 @@ import {
     ListItemText,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Mail as MailIcon, MoveToInbox as InboxIcon } from "@material-ui/icons";
-import React from "react";
+import {
+    Home as HomeIcon,
+    List as ListIcon,
+    Settings as SettingsIcon,
+} from "@material-ui/icons";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
     list: {
@@ -24,8 +30,41 @@ const useStyles = makeStyles({
     },
 });
 
-const AppBarDrawer = ({ isDrawerOpen, toggleDrawer }) => {
+const mainDrawer = [
+    {
+        name: "Home",
+        icon: <HomeIcon />,
+        route: "/",
+    },
+];
+
+const commonDrawer = [
+    {
+        name: "Settings",
+        icon: <SettingsIcon />,
+        route: "/settings",
+    },
+];
+
+const authenticatedDrawer = [
+    {
+        name: "Transactions",
+        icon: <ListIcon />,
+        route: "/transactions",
+    },
+];
+
+const AppBarDrawer = ({ isDrawerOpen, toggleDrawer, isUserAuthenticated }) => {
+    const history = useHistory();
     const classes = useStyles();
+
+    const [drawerOptions] = useState([
+        ...mainDrawer.concat(isUserAuthenticated ? authenticatedDrawer : []),
+    ]);
+
+    const handleRoute = (path) => {
+        history.push(path);
+    };
 
     return (
         <Drawer
@@ -41,29 +80,27 @@ const AppBarDrawer = ({ isDrawerOpen, toggleDrawer }) => {
                 onKeyDown={toggleDrawer}
             >
                 <List>
-                    {["Inbox", "Starred", "Send email", "Drafts"].map(
-                        (text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon />
-                                    ) : (
-                                        <MailIcon />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        )
-                    )}
+                    {drawerOptions.map((item, index) => (
+                        <ListItem
+                            button
+                            key={index}
+                            onClick={() => handleRoute(item.route)}
+                        >
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText primary={item.name} />
+                        </ListItem>
+                    ))}
                 </List>
                 <Divider />
                 <List>
-                    {["All mail", "Trash", "Spam"].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
+                    {commonDrawer.map((item, index) => (
+                        <ListItem
+                            button
+                            key={index}
+                            onClick={() => handleRoute(item.route)}
+                        >
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText primary={item.name} />
                         </ListItem>
                     ))}
                 </List>
@@ -72,4 +109,8 @@ const AppBarDrawer = ({ isDrawerOpen, toggleDrawer }) => {
     );
 };
 
-export default AppBarDrawer;
+export default connect((state) => {
+    return {
+        isUserAuthenticated: state.auth.isUserAuthenticated,
+    };
+})(AppBarDrawer);

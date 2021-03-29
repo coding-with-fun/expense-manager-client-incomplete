@@ -1,6 +1,7 @@
 const initialState = {
     token: undefined,
     isUserAuthenticated: false,
+    fetchingUserToken: true,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -32,6 +33,12 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 token: userToken,
                 isUserAuthenticated: !!userToken,
+            };
+
+        case "FETCHING_USER_TOKEN":
+            return {
+                ...state,
+                fetchingUserToken: action.payload.isLoading,
             };
 
         default:

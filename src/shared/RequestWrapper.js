@@ -9,7 +9,9 @@ axios.interceptors.request.use((config) => {
 axios.interceptors.response.use((response) => {
     localStorage.setItem("Author", "Coderc");
 
+    // ! TODO: Change it for successful Authentication
     throw response.data;
+
     // * Change the response according to the response from server.
     // return response.data;
 });
