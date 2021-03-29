@@ -1,0 +1,35 @@
+.dark-theme {
+    background: var(--dark-color) !important;
+    color: var(--light-color) !important;
+}
+
+.dark-drawer {
+    .MuiPaper-root {
+        background: var(--dark-color) !important;
+        color: var(--light-color) !important;
+    }
+
+    .MuiListItemIcon-root {
+        color: var(--light-color) !important;
+    }
+
+    .MuiDivider-root {
+        background: var(--light-color) !important;
+    }
+}
+
+.light-theme {
+    background: var(--light-color) !important;
+    color: var(--dark-color) !important;
+}
+
+.light-drawer {
+    .MuiPaper-root {
+        background: var(--light-color) !important;
+        color: var(--dark-color) !important;
+    }
+
+    .MuiListItemIcon-root {
+        color: var(--dark-color) !important;
+    }
+}

@@ -1,5 +1,7 @@
+import WrappedRouter from "./routes/WrappedRouter";
+
 function App() {
-    return <div></div>;
+    return <WrappedRouter />;
 }
 
 export default App;
