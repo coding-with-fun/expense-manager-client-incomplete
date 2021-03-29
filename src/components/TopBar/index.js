@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-        marginTop: "2px",
     },
     titleLink: {
         cursor: "pointer",
