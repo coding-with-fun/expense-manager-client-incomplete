@@ -13,6 +13,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { Menu as MenuIcon } from "@material-ui/icons";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import AppBarDrawer from "./AppBarDrawer";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,9 +51,11 @@ const TopBar = () => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    Expense Manager
+                    <Link to="/">Expense Manager</Link>
                 </Typography>
-                <Button color="inherit">Sign In</Button>
+                <Button color="inherit">
+                    <Link to="/signin">Sign In</Link>
+                </Button>
                 <AppBarDrawer
                     isDrawerOpen={isDrawerOpen}
                     toggleDrawer={toggleDrawer}

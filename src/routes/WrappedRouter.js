@@ -4,44 +4,33 @@
  */
 
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Redirect,
-    Route,
-    Switch,
-} from "react-router-dom";
-import AuthForm from "../components/AuthForm";
-import Guest from "../components/Dashboard/Guest";
+import { connect } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 import TopBar from "../components/TopBar";
+import AuthenticatedRouter from "./AuthenticatedRouter";
+import UnauthenticatedRouter from "./UnauthenticatedRouter";
 
-const WrappedRouter = () => {
+const WrappedRouter = ({ loadingUserToken, isUserAuthenticated }) => {
     return (
         <div className="light-theme">
-            <Router>
-                <TopBar />
-                <div className="body-container">
-                    <Switch>
-                        <Route exact path="/" component={Guest} />
-                        <Route
-                            exact
-                            path="/signin"
-                            render={(props) => (
-                                <AuthForm {...props} routeType={0} />
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/signup"
-                            render={(props) => (
-                                <AuthForm {...props} routeType={1} />
-                            )}
-                        />
-                        <Redirect to="/" />
-                    </Switch>
-                </div>
-            </Router>
+            {!loadingUserToken ? (
+                <Router>
+                    <TopBar />
+                    <div className="body-container">
+                        {isUserAuthenticated ? (
+                            <AuthenticatedRouter />
+                        ) : (
+                            <UnauthenticatedRouter />
+                        )}
+                    </div>
+                </Router>
+            ) : null}
         </div>
     );
 };
 
-export default WrappedRouter;
+export default connect((state) => {
+    return {
+        isUserAuthenticated: state.auth.isUserAuthenticated,
+    };
+})(WrappedRouter);
