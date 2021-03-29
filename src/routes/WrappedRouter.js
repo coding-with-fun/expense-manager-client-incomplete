@@ -5,7 +5,8 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Settings from "../components/Settings";
 import TopBar from "../components/TopBar";
 import AuthenticatedRouter from "./AuthenticatedRouter";
 import UnauthenticatedRouter from "./UnauthenticatedRouter";
@@ -17,11 +18,19 @@ const WrappedRouter = ({ isUserAuthenticated, fetchingUserToken }) => {
                 <Router>
                     <TopBar />
                     <div className="body-container">
-                        {isUserAuthenticated ? (
-                            <AuthenticatedRouter />
-                        ) : (
-                            <UnauthenticatedRouter />
-                        )}
+                        <Switch>
+                            <Route
+                                exact
+                                path="/settings"
+                                component={Settings}
+                            />
+
+                            {isUserAuthenticated ? (
+                                <AuthenticatedRouter />
+                            ) : (
+                                <UnauthenticatedRouter />
+                            )}
+                        </Switch>
                     </div>
                 </Router>
             ) : null}
