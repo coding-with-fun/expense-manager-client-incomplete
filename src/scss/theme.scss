@@ -1,6 +1,10 @@
 .dark-theme {
     background: var(--dark-color) !important;
     color: var(--light-color) !important;
+
+    .MuiDivider-root {
+        background: var(--dark-divider-color) !important;
+    }
 }
 
 .dark-drawer {
@@ -11,10 +15,6 @@
 
     .MuiListItemIcon-root {
         color: var(--light-color) !important;
-    }
-
-    .MuiDivider-root {
-        background: var(--dark-divider-color) !important;
     }
 }
 

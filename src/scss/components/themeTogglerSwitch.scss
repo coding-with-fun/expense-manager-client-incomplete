@@ -3,6 +3,7 @@
     display: inline-block;
     width: 46px;
     height: 20px;
+    margin-bottom: 0;
 }
 
 .switch input {
@@ -18,7 +19,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #6e6e6e;
+    background: var(--dark-color);
     transition: 0.4s;
 }
 
@@ -29,12 +30,12 @@
     width: 12px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--light-color);
     transition: 0.4s;
 }
 
 input:checked + .slider {
-    background-color: #1849ab;
+    background-color: var(--light-color);
 }
 
 input:focus + .slider {
@@ -43,6 +44,7 @@ input:focus + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
+    background-color: var(--dark-color);
 }
 
 .slider.round {

@@ -7,17 +7,48 @@
     align-items: center;
 
     .settings-body {
-        max-width: 350px;
-        min-width: 300px;
+        max-width: 400px;
+        width: inherit;
 
-        .settings-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .settings-title {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 10px;
+        }
 
-            .data {
+        .MuiDivider-root {
+            margin: 20px 0;
+        }
+
+        .settings-content {
+            .settings-item {
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
+
+                .data {
+                    display: flex;
+                    align-items: center;
+
+                    .icon {
+                        svg {
+                            margin-bottom: 1px;
+                        }
+                    }
+
+                    .heading {
+                        margin-left: 10px;
+                    }
+                }
+
+                .action-container {
+                    display: flex;
+                    align-items: center;
+
+                    label {
+                        margin: 0 15px;
+                    }
+                }
             }
         }
     }
