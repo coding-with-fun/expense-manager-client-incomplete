@@ -1,0 +1,24 @@
+@import "./themeTogglerSwitch";
+
+.settings-container {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    .settings-body {
+        max-width: 350px;
+        min-width: 300px;
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .data {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}

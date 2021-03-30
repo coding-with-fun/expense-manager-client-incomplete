@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TopBar = ({ isUserAuthenticated }) => {
+const TopBar = ({ isUserAuthenticated, themeColor }) => {
     const history = useHistory();
     const classes = useStyles();
 
@@ -47,7 +47,7 @@ const TopBar = ({ isUserAuthenticated }) => {
     };
 
     return (
-        <AppBar position="sticky" className="light-theme">
+        <AppBar position="sticky" className={`${themeColor}-theme`}>
             <Toolbar>
                 <IconButton
                     edge="start"
@@ -86,5 +86,6 @@ const TopBar = ({ isUserAuthenticated }) => {
 export default connect((state) => {
     return {
         isUserAuthenticated: state.auth.isUserAuthenticated,
+        themeColor: state.theme.themeColor,
     };
 })(TopBar);

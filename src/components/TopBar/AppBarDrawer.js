@@ -54,7 +54,12 @@ const authenticatedDrawer = [
     },
 ];
 
-const AppBarDrawer = ({ isDrawerOpen, toggleDrawer, isUserAuthenticated }) => {
+const AppBarDrawer = ({
+    isDrawerOpen,
+    toggleDrawer,
+    isUserAuthenticated,
+    themeColor,
+}) => {
     const history = useHistory();
     const classes = useStyles();
 
@@ -71,7 +76,7 @@ const AppBarDrawer = ({ isDrawerOpen, toggleDrawer, isUserAuthenticated }) => {
             anchor={"left"}
             open={isDrawerOpen}
             onClose={toggleDrawer}
-            className="light-drawer"
+            className={`${themeColor}-drawer`}
         >
             <div
                 className={classes.list}
@@ -112,5 +117,6 @@ const AppBarDrawer = ({ isDrawerOpen, toggleDrawer, isUserAuthenticated }) => {
 export default connect((state) => {
     return {
         isUserAuthenticated: state.auth.isUserAuthenticated,
+        themeColor: state.theme.themeColor,
     };
 })(AppBarDrawer);
