@@ -66,12 +66,12 @@ const TopBar = ({ isUserAuthenticated, themeColor }) => {
                         Expense Manager
                     </span>
                 </Typography>
-                {!isUserAuthenticated && (
+                {isUserAuthenticated && (
                     <Button
                         color="inherit"
-                        onClick={() => handleRoute("/signin")}
+                        onClick={() => handleRoute("/profile")}
                     >
-                        Sign In
+                        Profile
                     </Button>
                 )}
                 <AppBarDrawer

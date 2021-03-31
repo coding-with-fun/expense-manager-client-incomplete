@@ -68,6 +68,7 @@ const AppBarDrawer = ({
     ]);
 
     const handleRoute = (path) => {
+        toggleDrawer();
         history.push(path);
     };
 
@@ -78,12 +79,7 @@ const AppBarDrawer = ({
             onClose={toggleDrawer}
             className={`${themeColor}-drawer`}
         >
-            <div
-                className={classes.list}
-                role="presentation"
-                onClick={toggleDrawer}
-                onKeyDown={toggleDrawer}
-            >
+            <div className={classes.list} role="presentation">
                 <List>
                     {drawerOptions.map((item, index) => (
                         <ListItem
@@ -109,6 +105,23 @@ const AppBarDrawer = ({
                         </ListItem>
                     ))}
                 </List>
+                <Divider />
+                {!isUserAuthenticated && (
+                    <div className="auth-buttons">
+                        <div
+                            className="sign-in-button"
+                            onClick={() => handleRoute("/signin")}
+                        >
+                            Sign In
+                        </div>
+                        <div
+                            className="sign-up-button"
+                            onClick={() => handleRoute("/signup")}
+                        >
+                            Sign Up
+                        </div>
+                    </div>
+                )}
             </div>
         </Drawer>
     );
