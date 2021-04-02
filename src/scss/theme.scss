@@ -19,6 +19,31 @@
     .MuiDivider-root {
         background: var(--dark-divider-color) !important;
     }
+
+    .hoc-contained-button {
+        background: var(--light-color);
+        color: var(--dark-color);
+        padding: 6px 25px;
+    }
+
+    .hoc-contained-button:hover {
+        border: 1px solid var(--light-color);
+        background: var(--dark-color);
+        color: var(--light-color);
+        padding: 5px 24px;
+    }
+
+    .hoc-outlined-button {
+        border: 1px solid var(--light-color);
+        color: var(--light-color);
+        padding: 5px 20px;
+    }
+
+    .hoc-outlined-button:hover {
+        background: var(--light-color);
+        color: var(--dark-color);
+        padding: 5px 20px;
+    }
 }
 
 .light-theme {
@@ -34,6 +59,33 @@
 
     .MuiListItemIcon-root {
         color: var(--dark-color) !important;
+    }
+}
+
+.light-theme,
+.light-drawer {
+    .hoc-contained-button {
+        background: var(--dark-color);
+        color: var(--light-color);
+        padding: 6px 25px;
+    }
+
+    .hoc-contained-button:hover {
+        border: 1px solid var(--dark-color);
+        background: var(--light-color);
+        color: var(--dark-color);
+        padding: 5px 24px;
+    }
+
+    .hoc-outlined-button {
+        border: 1px solid var(--dark-color);
+        padding: 5px 20px;
+    }
+
+    .hoc-outlined-button:hover {
+        background: var(--dark-color);
+        color: var(--light-color);
+        padding: 5px 20px;
     }
 }
 

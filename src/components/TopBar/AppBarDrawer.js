@@ -23,6 +23,7 @@ import {
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
+import { FilledButton, OutlinedButton } from "../../HOC/Buttons";
 
 const useStyles = makeStyles({
     list: {
@@ -114,6 +115,16 @@ const AppBarDrawer = ({
                         >
                             Sign In
                         </div>
+                        <FilledButton
+                            title="Sign In"
+                            variant={themeColor}
+                            name="sign-in"
+                        />
+                        <OutlinedButton
+                            title="Sign Up"
+                            variant={themeColor}
+                            name="sign-up"
+                        />
                         <div
                             className="sign-up-button"
                             onClick={() => handleRoute("/signup")}

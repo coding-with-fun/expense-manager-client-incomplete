@@ -3,18 +3,11 @@
     flex-flow: column;
     align-items: center;
 
-    .sign-in-button,
-    .sign-up-button {
+    .hoc-sign-in-button,
+    .hoc-sign-up-button {
         margin-top: 26px;
         border-radius: 5px;
         cursor: pointer;
-    }
-
-    .sign-in-button,
-    .sign-in-button:hover,
-    .sign-up-button,
-    .sign-up-button:hover {
-        transition: background 200ms linear, color 200ms linear;
     }
 
     .sign-in-button {
